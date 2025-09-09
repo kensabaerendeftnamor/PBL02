@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistem Restoran Futuristik</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">Restoran Futuristik</div>
+    <nav>
+      <ul>
+        <li><a href="#inventori">Inventori</a></li>
+        <li><a href="#resep">Resep</a></li>
+        <li><a href="#limbah">Analitik Limbah</a></li>
+        <li><a href="#donasi">Donasi</a></li>
+        <li><a href="#menu">Menu Harian</a></li>
+        <li><a href="#belanja">Belanja</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- INVENTORY -->
+    <section class="card" id="inventori">
+      <h2>Inventaris Bahan</h2>
+      <div class="muted">Kelola stok bahan makanan di restoran</div>
+      <div class="form-group">
+        <input type="text" id="ingredientName" placeholder="Nama bahan" />
+        <input type="number" id="ingredientQty" placeholder="Jumlah" />
+        <button id="addIngredient">Tambah</button>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Bahan</th><th>Jumlah</th><th>Aksi</th></tr>
+        </thead>
+        <tbody id="inventoryTable"></tbody>
+      </table>
+    </section>
+
+    <!-- RECIPE RECOMMENDATION -->
+    <section class="card" id="resep">
+      <h2>Rekomendasi Resep Dinamis</h2>
+      <div class="muted">Pilih resep sesuai stok yang tersedia</div>
+      <div class="pill-container">
+        <div class="pill" data-recipe="nasi">Nasi Goreng</div>
+        <div class="pill" data-recipe="spaghetti">Spaghetti Bolognese</div>
+        <div class="pill" data-recipe="salad">Salad Sayur</div>
+      </div>
+    </section>
+
+    <!-- WASTE ANALYTICS -->
+    <section class="card" id="limbah">
+      <h2>Analitik Limbah</h2>
+      <div class="chart-placeholder">[Grafik Limbah Placeholder]</div>
+    </section>
+
+    <!-- DONATION -->
+    <section class="card" id="donasi">
+      <h2>Integrasi Donasi</h2>
+      <div class="muted">Daftar bank pangan & status donasi</div>
+
+      <div class="donation-box warning">
+        <strong>Rekomendasi donasi:</strong> Tomat (25 pcs)
+        <br>
+        <span class="muted small">Belum semua bank pangan menerima donasi</span>
+      </div>
+
+      <div style="margin-top:12px">
+        <h3 class="muted">Bank Makanan Terdaftar</h3>
+        <table class="donation-table" id="donationTable">
+          <thead>
+            <tr>
+              <th>Nama</th>
+              <th>Alamat</th>
+              <th>Kontak</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="success">
+              <td>Bank Pangan Jakarta</td>
+              <td>Jl. Merdeka No. 10, Jakarta</td>
+              <td>0812-3456-7890</td>
+              <td>✅ Sudah menerima donasi</td>
+            </tr>
+            <tr class="warning">
+              <td>Komunitas Dapur Bersama</td>
+              <td>Jl. Melati No. 45, Bandung</td>
+              <td>0813-9876-1234</td>
+              <td>❌ Belum ada donasi</td>
+            </tr>
+            <tr class="warning">
+              <td>Yayasan Peduli Pangan</td>
+              <td>Jl. Diponegoro No. 22, Surabaya</td>
+              <td>0811-6543-210</td>
+              <td>❌ Belum ada donasi</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- FORM PENGIRIMAN DONASI -->
+      <div class="donation-form">
+        <h3>Kirim Donasi</h3>
+        <div class="form-group">
+          <label>Pilih Bank Pangan</label>
+          <select id="donationTarget">
+            <option value="Bank Pangan Jakarta">Bank Pangan Jakarta</option>
+            <option value="Komunitas Dapur Bersama">Komunitas Dapur Bersama</option>
+            <option value="Yayasan Peduli Pangan">Yayasan Peduli Pangan</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <input type="text" id="donationItem" placeholder="Jenis bahan (contoh: Tomat)" />
+          <input type="number" id="donationQty" placeholder="Jumlah" />
+        </div>
+        <div class="form-group">
+          <input type="text" id="donorName" placeholder="Nama pengirim" />
+          <input type="text" id="donorContact" placeholder="Kontak pengirim" />
+        </div>
+        <button id="sendDonation">Kirim Donasi</button>
+      </div>
+    </section>
+
+    <!-- DAILY MENU INPUT -->
+    <section class="card" id="menu">
+      <h2>Input Menu Harian</h2>
+      <div class="muted">Catat menu apa saja yang dipesan hari ini</div>
+      <div class="form-group">
+        <input type="text" id="menuName" placeholder="Nama menu" />
+        <input type="number" id="menuOrders" placeholder="Jumlah pesanan" />
+        <button id="addMenu">Tambah</button>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Menu</th><th>Jumlah Pesanan</th><th>Aksi</th></tr>
+        </thead>
+        <tbody id="menuTable"></tbody>
+      </table>
+    </section>
+
+    <!-- PURCHASE RECOMMENDATION -->
+    <section class="card" id="belanja">
+      <h2>Rekomendasi Belanja Bahan</h2>
+      <div class="muted">Perkiraan kebutuhan bahan besok berdasarkan menu harian</div>
+      <button id="calcRecommendation">Hitung Rekomendasi</button>
+      <table style="margin-top:12px">
+        <thead>
+          <tr><th>Bahan</th><th>Kebutuhan Total</th></tr>
+        </thead>
+        <tbody id="purchaseTable"></tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <!-- MODAL RECIPE -->
+  <div id="recipeModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3 id="recipeTitle"></h3>
+      <p id="recipeDetail"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
